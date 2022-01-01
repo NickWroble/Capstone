@@ -1,0 +1,67 @@
+Found PCBees BLE at 58:D8:0E:7F:D1:BD in 5.0189 seconds
+
+Connect time: 4.2141 seconds.
+
+Press enter key to turn the LED on.
+Press enter key to turn the LED off.
+Sending: Hello World!
+Send time:    90.5657 ms.
+Read:    Hello World!
+Read time:    89.8378 ms.
+
+Sending: abcdefghijklmnopqrstuvwxyz
+Send time:    69.9844 ms.
+Read:    abcdefghijklmnopqrstuvwxyz
+Read time:    91.3327 ms.
+
+Sending: PCBees
+Send time:    83.4343 ms.
+Read:    PCBees
+Read time:    87.7688 ms.
+
+Sending: NoCapStone
+Send time:    85.0222 ms.
+Read:    NoCapStone
+Read time:    89.4864 ms.
+
+Sending: Go
+Send time:    76.2613 ms.
+Read:    Go
+Read time:    90.1642 ms.
+
+Sending: IT'S THE POLICE OPEN UP WE HAVE THE BUILDING SURROUNDED.
+Send time:    82.6485 ms.
+Read:    IT'S THE POLICE OPEN UP WE HAVE THE BUILDING SURROUNDED.
+Read time:    91.2228 ms.
+
+Sending: We're trying to contact you about your car's extended warranty.
+Send time:    293.7796 ms.
+Read:    We're trying to contact you about your car's extended warranty.
+Read time:    91.8801 ms.
+
+Sending: Simon says repeat after me.
+Send time:    82.9749 ms.
+Read:    Simon says repeat after me.
+Read time:    89.7925 ms.
+
+Sending: Stop
+Send time:    75.0606 ms.
+Read:    Stop
+Read time:    90.4400 ms.
+
+Sending: ECHO Echo echo
+Send time:    84.0123 ms.
+Read:    ECHO Echo echo
+Read time:    92.1900 ms.
+
+Sending: 1234567890
+Send time:    74.3244 ms.
+Read:    1234567890
+Read time:    90.0869 ms.
+
+Disconnect time: 3.0492 seconds.
+
+Average read time:  90.3820 ms.
+Average write time: 99.8244 ms.
+Successful reads: 11/11
+Successful writes: 11/11
