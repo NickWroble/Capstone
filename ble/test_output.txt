@@ -1,0 +1,21 @@
+Scanning...
+Connecting to WiFi socket on 192.168.4.1:5000...
+Socket connected
+Connecting to BLE Nordic_UART_Service on FE:7C:23:76:89:E8...
+BLE connected
+
+Enter 'c' to take a picture or 'e' to exit.
+>c
+
+Enter 'c' to take a picture or 'e' to exit.
+>c
+
+Enter 'c' to take a picture or 'e' to exit.
+>c
+
+Enter 'c' to take a picture or 'e' to exit.
+>e
+
+Disconnecting...
+Connecting to WiFi socket on 192.168.4.1:5000...
+Socket connected
