@@ -1,3 +1,9 @@
+/*
+Modified version of https://github.com/bitcraze/aideck-gap8-examples/tree/9bb9b1c157645e877db9677bc35f383c6dc667dd/GAP8/test_functionalities/wifi_jpeg_streamer
+
+Used a simple state machine to send image data if it receives a picture command over UART. Lines 43-75 is where all the work is being done
+*/
+
 #include "bsp/camera/himax.h"
 #include "bsp/camera/mt9v034.h"
 #include "bsp/transport/nina_w10.h"
@@ -33,12 +39,13 @@ struct pi_device uart_device;
 
 static void streamer_handler(void *arg);
 
+// State machine has three handler states: camera handler, uart handler, and streamer handler. See states.jpg for a visual
 
-static void cam_handler(void *arg){
+static void cam_handler(void *arg){ 
   printf("Called function is: %s\n",__func__);
-  pi_camera_control(&camera, PI_CAMERA_CMD_STOP, 0);
+  pi_camera_control(&camera, PI_CAMERA_CMD_STOP, 0); //Stop image capture
 
-  frame_streamer_send_async(streamer1, &buffer, pi_task_callback(&task1, streamer_handler, (void *)&stream_done));
+  frame_streamer_send_async(streamer1, &buffer, pi_task_callback(&task1, streamer_handler, (void *)&stream_done)); //Send image to frame buffer, which is then sent to the ESP32
 
   stream_done = 0;
 
@@ -52,20 +59,20 @@ static void uart_handler(void *arg){
   }
   if(uart_value == PICTURE_COMMAND){ //if picture command, take picture and go to cam service
     printf("Going to take a photo\n");
-    pi_camera_control(&camera, PI_CAMERA_CMD_START, 0);
-    pi_camera_capture_async(&camera, imgBuff0, CAM_WIDTH*CAM_HEIGHT, pi_task_callback(&task1, cam_handler, NULL));
+    pi_camera_control(&camera, PI_CAMERA_CMD_START, 0); //Start the camera
+    pi_camera_capture_async(&camera, imgBuff0, CAM_WIDTH*CAM_HEIGHT, pi_task_callback(&task1, cam_handler, NULL)); //Take the photo and go to cam handler
   }
   else{ //otherwise circle back for picture command
     printf("No photo\n");
-    pi_uart_read_async(&uart_device, &uart_value, 1, pi_task_callback(&task1, uart_handler, NULL));
+    pi_uart_read_async(&uart_device, &uart_value, 1, pi_task_callback(&task1, uart_handler, NULL)); //Go back to uart handler in case of bad UART cmd
   }
 }
 
 static void streamer_handler(void *arg){
   printf("Called function is: %s\n",__func__);
   stream_done = 1;
-  while (!stream_done);
-  pi_uart_read_async(&uart_device, &uart_value, 1, pi_task_callback(&task1, uart_handler, NULL));
+  while (!stream_done); //wait for picture to stop streaming
+  pi_uart_read_async(&uart_device, &uart_value, 1, pi_task_callback(&task1, uart_handler, NULL)); //Read uart and go to handler
 }
 
 
